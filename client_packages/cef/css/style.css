@@ -1,0 +1,64 @@
+body {
+    background: transparent;
+}
+
+.form {
+    background-color: #F0F0F0;
+}
+
+.form, .weaponsForm {
+    margin: 5px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.form-result {
+    padding: 10px;
+}
+
+.btn-highlight {
+    background-color: #2F5C73; /* HUD_COLOUR_BLUEDARK */
+}
+
+.btn-highlight:hover {
+    background-color: #5DB6E5; /* HUD_COLOUR_BLUE */
+}
+
+.btn-highlight:active {
+    background-color: #2F5C73; /* HUD_COLOUR_BLUEDARK */
+}
+
+/* override bg colors */
+.bg-success {
+    background-color: #72CC72; /* HUD_COLOUR_GREEN */
+}
+
+.bg-error {
+    background-color: #E03232; /* HUD_COLOUR_RED */
+}
+
+.bg-info {
+    background-color: #5DB6E5; /* HUD_COLOUR_BLUE */
+}
+
+/* override button colors */
+button.success {
+    background-color: #72CC72; /* HUD_COLOUR_GREEN */
+}
+
+button.success:hover {
+    background-color: #B9E6B9; /* HUD_COLOUR_GREENLIGHT */
+}
+
+button.success:active {
+    background-color: #396639; /* HUD_COLOUR_GREENDARK */
+}
+
+#registerBox, #loginBox, #loginResult, #registerResult, #weaponShopResult {
+    display: none;
+}
+
+#weaponsList .card {
+    background-color: #F0F0F0;
+    margin: 10px;
+}

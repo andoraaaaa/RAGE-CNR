@@ -1,0 +1,150 @@
+{
+    "TEAM_FAMILIES": {
+        "Name": "The Families",
+        "ColorName": "HUD_COLOUR_GREEN",
+        "ColorHex": "#72CC72",
+        "VehicleColor": 53,
+        "BlipColor": 2,
+        "SpawnPos": {
+            "x": -94.07469177246094,
+            "y": -1466.963623046875,
+            "z": 33.098819732666016
+        },
+        "Skins": [
+            "g_m_y_famca_01",
+            "g_m_y_famdnf_01"
+        ],
+        "Vehicles": [
+            "emperor",
+            "manana",
+            "tornado",
+            "buccaneer",
+            "peyote",
+            "cavalcade",
+            "baller",
+            "nemesis",
+            "bmx"
+        ]
+    },
+
+    "TEAM_BALLAS": {
+        "Name": "Army",
+        "ColorName": "HUD_COLOUR_PURPLE",
+        "ColorHex": "#8466E2",
+        "VehicleColor": 145,
+        "BlipColor": 7,
+        "SpawnPos": {
+            "x": 84.98970031738281,
+            "y": -1958.7568359375,
+            "z": 21.121671676635742
+        },
+        "Skins": [
+            "s_m_y_armymech_01",
+            "s_m_y_marine_03",
+            "csb_ramp_marine",
+            "cs_hunter",
+            "s_m_m_marine_01",
+            "s_m_y_blackops_02"
+        ],
+        "Vehicles": [
+            "emperor",
+            "manana",
+            "tornado",
+            "buccaneer",
+            "peyote",
+            "baller",
+            "felon",
+            "jackal",
+            "oracle",
+            "primo",
+            "voodoo",
+            "chino",
+            "moonbeam",
+            "faction",
+            "ruffian",
+            "bmx"
+        ]
+    },
+
+    "TEAM_POLICE": {
+        "Name": "Police",
+        "ColorName": "HUD_COLOUR_BLUE",
+        "ColorHex": "#5DB6E5",
+        "VehicleColor": 65,
+        "BlipColor": 26,
+        "SpawnPos": {
+            "x": 770.3854370117188,
+            "y": -1207.16552734375,
+            "z": 24.465679168701172
+        },
+        "Skins": [
+            "s_m_y_sheriff_01",
+            "s_f_y_sheriff_01",
+            "s_m_y_cop_01",
+            "s_f_y_cop_01",
+            "ig_stevehains",
+            "s_m_y_swat_01"
+        ],
+        "Vehicles": [
+            "emperor",
+            "manana",
+            "tornado",
+            "peyote",
+            "rebel2",
+            "thrust",
+            "bmx"
+        ]
+    },
+
+    "TEAM_LOSTMC": {
+        "Name": "The Lost MC",
+        "ColorName": "HUD_COLOUR_ORANGEDARK",
+        "ColorHex": "#7F422A",
+        "VehicleColor": 1,
+        "BlipColor": 21,
+        "SpawnPos": {
+            "x": 920.9954223632812,
+            "y": -1582.264892578125,
+            "z": 30.43585777282715
+        },
+        "Skins": [
+            "g_m_y_lost_02",
+            "g_m_y_lost_03"
+        ],
+        "Vehicles": [
+            "slamvan2",
+            "dloader",
+            "gburrito",
+            "hexer",
+            "diablous",
+            "innovation",
+            "daemon",
+            "bagger",
+            "zombieb",
+            "bmx"
+        ]
+    },
+
+    "TEAM_MADRAZO": {
+        "Name": "Madrazo Cartel",
+        "ColorName": "HUD_COLOUR_REDDARK",
+        "ColorHex": "#701919",
+        "VehicleColor": 1,
+        "BlipColor": 76,
+        "SpawnPos": {
+            "x": 496.55267333984375,
+            "y": -1971.03955078125,
+            "z": 24.911117553710938
+        },
+        "Skins": [
+            "g_m_y_mexgang_01",
+            "g_m_y_pologoon_01"
+        ],
+        "Vehicles": [
+            "baller",
+            "cavalcade",
+            "huntley",
+            "bmx"
+        ]
+    }
+}

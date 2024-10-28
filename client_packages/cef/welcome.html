@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>WelcomePage</title>
+        <link href="css/skeleton.min.css" rel="stylesheet" />
+        <link href="css/style.css" rel="stylesheet" />
+    </head>
+
+    <body>
+        <main class="container">
+            <div class="grid-flex">
+                <div id="mainBox" class="flex-1 form">
+                    <div class="grid-flex">
+                        <div class="flex-2">
+                            <h4>Welcome!</h4>
+
+                            <p>Please select what you'd like to do:</p>
+                            <button onclick="switchTo('login')" type="button">Login</button>
+                            <button onclick="switchTo('register')" type="button">Register</button>
+                        </div>
+
+                        <div class="flex-1">
+                            <h4>Rules:</h4>
+
+                            <ul class="inner">
+                                <li>Have fun</li>
+                                <li>Don't flame</li>
+                                <li>Don't RP</li>
+                                <li>There's no staff anyway</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="loginBox" class="flex-4 form">
+                    <h4>Login</h4>
+
+                    <div id="loginResult" class="form-result text-inverted bg-error"></div>
+
+                    <form>
+                        <input id="loginUser" type="text" name="username" placeholder="Username" maxlength="32">
+                        <input id="loginPass" type="password" name="password" placeholder="Password">
+                        <button onclick="sendLogin()" type="button">Login</button>
+                        <button onclick="switchTo('main')" type="button">Go back</button>
+                    </form>
+                </div>
+
+                <div id="registerBox" class="flex-4 form">
+                    <h4>Register</h4>
+
+                    <div id="registerResult" class="form-result text-inverted bg-error"></div>
+
+                    <form>
+                        <input id="registerUser" type="text" name="username" placeholder="Username" maxlength="32">
+                        <input id="registerPass" type="password" name="password" placeholder="Password">
+                        <input id="registerVerification" type="password" name="password2" placeholder="Verify Password">
+                        <button onclick="sendRegister()" type="button">Register</button>
+                        <button onclick="switchTo('main')" type="button">Go back</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+
+        <script type="text/javascript">
+            const boxes = {
+                "main": document.getElementById("mainBox"),
+                "login": document.getElementById("loginBox"),
+                "register": document.getElementById("registerBox")
+            };
+
+            const inputs = {
+                "loginUser": document.getElementById("loginUser"),
+                "loginPass": document.getElementById("loginPass"),
+                "registerUser": document.getElementById("registerUser"),
+                "registerPass": document.getElementById("registerPass"),
+                "registerVerification": document.getElementById("registerVerification")
+            };
+
+            const resultBoxes = {
+                "loginResult": document.getElementById("loginResult"),
+                "registerResult": document.getElementById("registerResult")
+            };
+
+            const buttons = document.getElementsByTagName("button");
+            let buttonsDisabled = false;
+
+            function switchTo(boxName) {
+                for (let resultBox in resultBoxes) hideResultBox(resultBox);
+                for (let box in boxes) boxes[box].style.display = "none";
+                boxes[boxName].style.display = "block";
+            }
+
+            function sendLogin() {
+                if (!buttonsDisabled) {
+                    hideResultBox("loginResult");
+                    disableButtons(true);
+
+                    let user = inputs["loginUser"].value;
+                    let pass = inputs["loginPass"].value;
+
+                    if (user.length < 1 || pass.length < 1) {
+                        showResultBox("loginResult", "Please fill in all fields.");
+                    } else {
+                        mp.trigger("sendLoginData", user, pass);
+                    }
+                }
+            }
+
+            function sendRegister() {
+                if (!buttonsDisabled) {
+                    hideResultBox("registerResult");
+                    disableButtons(true);
+
+                    let user = inputs["registerUser"].value;
+                    let pass = inputs["registerPass"].value;
+                    let verif = inputs["registerVerification"].value;
+
+                    if (user.length < 1 || pass.length < 1 || verif.length < 1) {
+                        showResultBox("registerResult", "Please fill in all fields.");
+                    } else if (user.length > 32) {
+                        showResultBox("registerResult", "Username can't exceed 32 characters.");
+                    } else if (pass !== verif) {
+                        showResultBox("registerResult", "Passwords don't match.");
+                    } else {
+                        mp.trigger("sendRegisterData", user, pass, verif);
+                    }
+                }
+            }
+
+            function showResultBox(name, message) {
+                resultBoxes[name].innerHTML = message;
+                resultBoxes[name].style.display = "block";
+                disableButtons(false);
+            }
+
+            function hideResultBox(name) {
+                resultBoxes[name].style.display = "none";
+            }
+
+            function disableButtons(disable) {
+                buttonsDisabled = disable;
+                for (let i = 0; i < buttons.length; i++) buttons[i].disabled = disable;
+            }
+        </script>
+    </body>
+</html>

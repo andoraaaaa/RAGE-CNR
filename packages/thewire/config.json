@@ -1,0 +1,132 @@
+{
+    "database": {
+        "host": "localhost",
+        "user": "root",
+        "password": "red2002",
+        "database": "database",
+        "port": 3306
+    },
+
+    "dbLogging": {
+        "joins": true,
+        "logins": true,
+        "chat": true,
+        "teamChat": true,
+        "privateChat": true,
+        "deaths": true,
+        "weaponPurchases": true,
+        "garagePurchases": true,
+        "sentMoney": true,
+        "adminActions": true
+    },
+
+    "loginDimension": -1,
+    "startingMoney": 1500,
+    "spawnProtectionSeconds": 5,
+    "accountSaveInterval": 10,
+    "killRewardMin": 100,
+    "killRewardMax": 200,
+    "teamKillPenalty": 1000,
+    "killstreakReward": 100,
+    "weaponShopMagCount": 6,
+    "playerVehicleSpawnLimit": 5,
+    "turfCaptureMaxProgressIncrease": 5,
+    "turfCaptureRequiredProgress": 50,
+    "turfIncomeInterval": 1,
+    "bcryptCost": 10,
+
+    "spawnWeapons": {
+        "TEAM_FAMILIES": [
+            {
+                "Name": "weapon_bat",
+                "Ammo": 1
+            },
+            {
+                "Name": "weapon_pistol",
+                "Ammo": 240
+            }
+        ],
+        "TEAM_BALLAS": [
+            {
+                "Name": "weapon_pistol",
+                "Ammo": 120
+            },
+            {
+                "Name": "weapon_knife",
+                "Ammo": 1
+            }
+        ],
+        "TEAM_POLICE": [
+            {
+                "Name": "weapon_bat",
+                "Ammo": 1
+            },
+            {
+                "Name": "weapon_pistol",
+                "Ammo": 240
+            }
+        ],
+        "TEAM_LOSTMC": [
+            {
+                "Name": "weapon_smg",
+                "Ammo": 60
+            },
+            {
+                "Name": "weapon_knife",
+                "Ammo": 1
+            }
+        ],
+        "TEAM_MADRAZO": [
+            {
+                "Name": "weapon_rifle",
+                "Ammo": 30
+            },
+            {
+                "Name": "weapon_pistol",
+                "Ammo": 120
+            }
+        ]
+    },
+
+    "world": {
+        "weather": "CLEAR",
+
+        "time": {
+            "hour": 10,
+            "minute": 0,
+            "second": 0
+        }
+    },
+
+    "log4js": {
+        "appenders": {
+            "console-default": {
+                "type": "console",
+                "layout": {
+                    "type": "pattern",
+                    "pattern": "%[[%d{yyyy-MM-dd hh:mm:ss}] [%p]%] %m"
+                }
+            },
+
+            "console-ig": {
+                "type": "console",
+                "layout": {
+                    "type": "pattern",
+                    "pattern": "[%d{yyyy-MM-dd hh:mm:ss}] %m"
+                }
+            }
+        },
+
+        "categories": {
+            "default": {
+                "appenders": ["console-default"],
+                "level": "info"
+            },
+
+            "IGEvent": {
+                "appenders": ["console-ig"],
+                "level": "info"
+            }
+        }
+    }
+}

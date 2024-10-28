@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>WeaponShopPage</title>
+        <link href="css/skeleton.min.css" rel="stylesheet" />
+        <link href="css/style.css" rel="stylesheet" />
+    </head>
+
+    <body>
+        <main class="container">
+            <div class="grid-flex">
+                <div class="flex-1 weaponsForm">
+                    <div id="weaponShopResult" class="form-result text-inverted bg-error"></div>
+                    <br>
+                    <div class="form-result text-inverted bg-info">Press ESC to close this page.</div>
+                    <div id="weaponsList" class="row"></div>
+                </div>
+            </div>
+        </main>
+
+        <script type="text/template" id="weaponTemplate">
+            <div class="three columns">
+                <div class="card card-shadow">
+                    <div class="content">
+                        <img src="weaponIcons/{{imgName}}.png">
+                        <p>{{name}}</p>
+                        <p><strong>Class: </strong>{{class}}</p>
+                        <div class="text-center"><button type="button" class="success" onclick="buyWeapon({{index}})">Buy (${{price}})</button></div>
+                    </div>
+                </div>
+            </div>
+        </script>
+
+        <!-- https://jonsuh.com/blog/javascript-templating-without-a-library/ -->
+        <script type="text/javascript">
+            const errorBox = document.getElementById("weaponShopResult");
+            const list = document.getElementById("weaponsList");
+            const template = document.getElementById("weaponTemplate");
+            const groupNames = {
+                "GROUP_UNARMED": "Melee",
+                "GROUP_MELEE": "Melee",
+                "GROUP_PISTOL": "Pistol",
+                "GROUP_SMG": "Submachine Gun",
+                "GROUP_SHOTGUN": "Shotgun",
+                "GROUP_RIFLE": "Assault Rifle",
+                "GROUP_SNIPER": "Sniper Rifle",
+                "GROUP_MG": "Machine Gun",
+                "GROUP_HEAVY": "Heavy Weapon",
+                "GROUP_THROWN": "Throwable"
+            };
+
+            let buttons = [];
+            let weaponData = [];
+            let buttonsDisabled = false;
+
+            function updatePage() {
+                errorBox.style.display = "none";
+                list.innerHTML = "";
+
+                let templateHtml = template.innerHTML;
+                let listHtml = "";
+
+                weaponData.forEach((weapon, index) => {
+                    listHtml += templateHtml.replace(/{{imgName}}/g, weapon.Hash)
+                                .replace(/{{name}}/g, weapon.Name)
+                                .replace(/{{class}}/g, groupNames[weapon.Class] || "Unknown")
+                                .replace(/{{index}}/g, index)
+                                .replace(/{{price}}/g, weapon.Price);
+                });
+
+                list.innerHTML = listHtml;
+                buttons = document.getElementsByTagName("button");
+            }
+
+            function buyWeapon(weaponIdx) {
+                if (!buttonsDisabled) {
+                    errorBox.style.display = "none";
+
+                    disableButtons(true);
+                    mp.trigger("sendWeaponPurchase", weaponIdx);
+                }
+            }
+
+            function disableButtons(disable) {
+                buttonsDisabled = disable;
+                for (let i = 0; i < buttons.length; i++) buttons[i].disabled = disable;
+            }
+
+            function showResult(errorMessage) {
+                if (errorMessage.length > 0 && errorMessage !== "OK") {
+                    errorBox.innerHTML = errorMessage;
+                    errorBox.style.display = "block";
+                }
+
+                disableButtons(false);
+            }
+        </script>
+    </body>
+</html>
