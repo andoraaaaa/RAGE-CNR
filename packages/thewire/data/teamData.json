@@ -27,7 +27,7 @@
         ]
     },
 
-    "TEAM_BALLAS": {
+    "TEAM_ARMY": {
         "Name": "Army",
         "ColorName": "HUD_COLOUR_PURPLE",
         "ColorHex": "#8466E2",
@@ -92,58 +92,6 @@
             "peyote",
             "rebel2",
             "thrust",
-            "bmx"
-        ]
-    },
-
-    "TEAM_LOSTMC": {
-        "Name": "The Lost MC",
-        "ColorName": "HUD_COLOUR_ORANGEDARK",
-        "ColorHex": "#7F422A",
-        "VehicleColor": 1,
-        "BlipColor": 21,
-        "SpawnPos": {
-            "x": 920.9954223632812,
-            "y": -1582.264892578125,
-            "z": 30.43585777282715
-        },
-        "Skins": [
-            "g_m_y_lost_02",
-            "g_m_y_lost_03"
-        ],
-        "Vehicles": [
-            "slamvan2",
-            "dloader",
-            "gburrito",
-            "hexer",
-            "diablous",
-            "innovation",
-            "daemon",
-            "bagger",
-            "zombieb",
-            "bmx"
-        ]
-    },
-
-    "TEAM_MADRAZO": {
-        "Name": "Madrazo Cartel",
-        "ColorName": "HUD_COLOUR_REDDARK",
-        "ColorHex": "#701919",
-        "VehicleColor": 1,
-        "BlipColor": 76,
-        "SpawnPos": {
-            "x": 496.55267333984375,
-            "y": -1971.03955078125,
-            "z": 24.911117553710938
-        },
-        "Skins": [
-            "g_m_y_mexgang_01",
-            "g_m_y_pologoon_01"
-        ],
-        "Vehicles": [
-            "baller",
-            "cavalcade",
-            "huntley",
             "bmx"
         ]
     }
