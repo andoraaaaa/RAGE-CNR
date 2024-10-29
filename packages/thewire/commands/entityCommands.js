@@ -1,6 +1,7 @@
 const database = require("../database");
 const logUtil = require("../logUtil");
 const weaponShopScript = require("../scripts/weaponShops");
+const supaSaveScript = require("../scripts/supaSaveShop");
 const garageScript = require("../scripts/garages");
 const turfScript = require("../scripts/turfs");
 
@@ -13,6 +14,46 @@ mp.events.addCommand("createweaponshop", (player) => {
         });
     }
 });
+
+mp.events.addCommand("createsupasave", (player) => {
+    if (player.isLoggedIn && player.admin > 0) {
+        // Create a new Supa Save shop at the player's current position
+        supaSaveScript.createSupaSaveShop(player.position).then((id) => {
+            player.outputChatBox(`Supa Save shop created. ID: ${id}`);
+        }, (error) => {
+            player.outputChatBox("Failed to create a Supa Save shop, check console for details.");
+        });
+    }
+});
+
+mp.events.addCommand("removesupasave", (player, supaSaveID) => {
+    if (player.isLoggedIn && player.admin > 0) {
+        supaSaveID = Number(supaSaveID);
+
+        if (isNaN(supaSaveID)) {
+            player.outputChatBox("!{#FF8555}SYNTAX: !{#FFFFFF}/removesupasave [ID]");
+            return;
+        }
+
+        supaSaveScript.deleteSupaSaveShop(supaSaveID).then((affected) => {
+            if (affected > 0) {
+                player.outputChatBox(`Supa Save shop #${supaSaveID} removed.`);
+
+                // Notify players using this shop
+                let users = mp.players.toArray().filter(p => p.usingSupaSaveShop === supaSaveID);
+                users.forEach((user) => {
+                    user.usingSupaSaveShop = undefined;
+                    user.call("displaySupaSaveShop", [false]);
+                });
+            } else {
+                player.outputChatBox("No changes made, you might have entered an invalid Supa Save shop ID.");
+            }
+        }, (error) => {
+            player.outputChatBox("Failed to remove Supa Save shop, check console for details.");
+        });
+    }
+});
+
 
 mp.events.addCommand("removeweaponshop", (player, weaponShopID) => {
     if (player.isLoggedIn && player.admin > 0) {

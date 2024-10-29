@@ -40,6 +40,7 @@ const toLoad = [
     "scripts/welcome",
     "scripts/selection",
     "scripts/weaponShop",
+    "scripts/supaSaveShop",
     "scripts/firingModes",
     "scripts/cashregisters",
     "scripts/deathScreen",

@@ -1,0 +1,29 @@
+{
+    "1": {
+        "HashKey": "ITEM_BOBBYPINS",
+        "NameGXT": "ITEM_BOBBYPINS",
+        "DescriptionGXT": "Bobby Pins to uncuff",
+        "Name": "Bobby Pins",
+        "Description": "Bobby pins to uncuff yourselff",
+        "Price": 7,
+        "item_picture": "item_bobbypins"
+    },
+    "2": {
+        "HashKey": "ITEM_ROPE",
+        "NameGXT": "ITEM_ROPE",
+        "DescriptionGXT": "A Rope",
+        "Name": "Rope",
+        "Description": "A Rope, use to tie other players.",
+        "Price": 5,
+        "item_picture": "item_rope"
+    },
+    "3": {
+        "HashKey": "ITEM_SCISSORS",
+        "NameGXT": "ITEM_SCISSORS",
+        "DescriptionGXT": "A scissors",
+        "Name": "Scissors",
+        "Description": "Scissors to escape from tie.",
+        "Price": 7,
+        "item_picture": "item_scissors"
+    }
+}
