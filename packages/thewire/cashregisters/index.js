@@ -88,6 +88,7 @@ function addWantedLevel(player, amount) {
             }
 
             player.outputChatBox(`Your wanted level has increased by !{#FF0000}${amount} !{#FFFFFF}and is now: !{#FF0000}${newWantedLevel}`);
+            player.call("showPictureNotification", ["Robbery News", "", `Your wanted level is now "${newWantedLevel}" carefull for the cops!`, "CHAR_CALL911"]);
         });
     });
 }

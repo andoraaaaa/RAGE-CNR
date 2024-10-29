@@ -43,6 +43,6 @@ mp.events.add("requestSupaSavePurchase", (player, idx) => {
 
         player.changeMoney(-item.Price);
         player.call("receiveSupaSavePurchase", ["OK"]);
-        player.call("showPictureNotification", ["Supa Save", "", `Bought "${item.Name}" for ~HUD_COLOUR_GREEN~$${item.Price}.`, "CHAR_AMMUNATION"]);
+        player.call("showPictureNotification", ["Supa Save", "", `Bought "${item.Name}" for ~HUD_COLOUR_GREEN~$${item.Price}.`, "WEB_SIXFIGURETEMPS"]);
     }
 });
