@@ -51,6 +51,7 @@ const toLoad = [
     "scripts/turfs",
     "scripts/killstreaks",
     "scripts/discord",
+    "scripts/playerCuff",
 
     "ui/teamSelectionText",
     "ui/attachedToMinimap",

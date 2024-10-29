@@ -116,6 +116,45 @@ mp.players.forEach((player) => {
 });
 
 
+//uncuff for admin
+mp.events.addCommand("auncuff", (player, fullText, targetId) => {
+    // Check if the player is logged in
+    if (!player.isLoggedIn) {
+        player.outputChatBox("You must be logged in to use this command.");
+        return;
+    }
+
+    // Check if the player is an admin
+    if (player.admin <= 0) {
+        player.outputChatBox("You do not have permission to use this command.");
+        return;
+    }
+
+    // Check if the player provided a target ID
+    if (!targetId) {
+        player.outputChatBox("Usage: /auncuff [id]");
+        return;
+    }
+
+    // Find the player with the specified ID
+    const targetPlayer = mp.players.at(parseInt(targetId));
+    if (!targetPlayer || !targetPlayer.data.isCuffed) {
+        player.outputChatBox("Target player is not found or is not cuffed.");
+        return;
+    }
+
+    // Uncuff the target player
+    targetPlayer.data.isCuffed = false;
+
+    // Notify both players
+    player.outputChatBox(`You have uncuffed ${targetPlayer.name}.`);
+    targetPlayer.outputChatBox(`${player.name} has uncuffed you.`);
+    
+    // Trigger client-side to stop the cuff animation
+    targetPlayer.call("stopCuffAnimation");
+});
+
+
 mp.events.addCommand("saveall", (player) => {
     if (player.isLoggedIn && player.admin > 0) {
         const connectedPlayers = mp.players.toArray(); // Get all connected players
