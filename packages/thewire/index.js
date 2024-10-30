@@ -18,14 +18,16 @@ function loadVehiclesFromDatabase() {
             const vehicle = mp.vehicles.new(hash, spawnPos, {
                 heading: vehicleData.rotation_z,
                 color: [[vehicleData.color1, vehicleData.color2]],
-                locked: false
+                locked: false,
+                numberPlate: vehicleData.plate // Mengatur plat nomor dari kolom 'plate' di database
             });
             vehicles.push(vehicle); // Tambahkan kendaraan ke array
-            console.log(`Spawned vehicle ID: ${vehicleData.id}, Model: ${vehicleData.model}`);
+            console.log(`Spawned vehicle ID: ${vehicleData.id}, Model: ${vehicleData.model}, Plate: ${vehicleData.plate}`);
         });
         console.log(`Loaded ${results.length} vehicles from the database.`);
     });
 }
+
 
 // Load vehicles when server starts
 mp.events.add("packagesLoaded", () => {

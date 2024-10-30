@@ -37,3 +37,22 @@ mp.events.add("requestWaypointPosition", () => {
     // Kirim koordinat x, y, dan z ke server
     mp.events.callRemote("sendWaypointPosition", waypointPos.x, waypointPos.y, zCoord + 0.5);
 });
+
+mp.events.add("startPickupAnimation", () => {
+    const animDict = "random@atmrobberygen"; // Dictionary animasi untuk pengambilan uang
+    const animName = "pickup_low"; // Menggunakan animasi mengambil uang dari lantai
+
+    // Preload animasi
+    mp.game.streaming.requestAnimDict(animDict);
+    while (!mp.game.streaming.hasAnimDictLoaded(animDict)) {
+        mp.game.wait(0);
+    }
+
+    // Memulai animasi
+    mp.players.local.taskPlayAnim(animDict, animName, 8.0, -8, -1, 1, 0, false, false, false);
+
+    // Berhenti animasi setelah 2 detik (sesuai durasi animasi)
+    setTimeout(() => {
+        mp.players.local.stopAnimTask(animDict, animName, 3.0);
+    }, 2000);
+});

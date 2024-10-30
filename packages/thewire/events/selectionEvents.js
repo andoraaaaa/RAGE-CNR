@@ -36,7 +36,7 @@ mp.events.add("requestSpawn", (player, teamIdx, skinModel) => {
     player.dimension = 0;
     player.spawn(teamData[teamName].SpawnPos);
     player.call("setSelectionState", [false]);
-    player.call("setDiscordPresence", [player.name, `Team: ${teamData[teamName].Name}`]);
+    player.call("setDiscordPresence", [`RAGE CNR : ${player.accountName}`, `Playing as ${teamData[teamName].Name}`]);
 });
 
 mp.events.add("requestTeamSelection", (player) => {

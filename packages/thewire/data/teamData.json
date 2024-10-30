@@ -1,6 +1,6 @@
 {
-    "TEAM_FAMILIES": {
-        "Name": "The Families",
+    "TEAM__CIVILLIAN": {
+        "Name": "Civillian",
         "ColorName": "HUD_COLOUR_GREEN",
         "ColorHex": "#72CC72",
         "VehicleColor": 53,

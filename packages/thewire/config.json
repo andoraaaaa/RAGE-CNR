@@ -36,7 +36,7 @@
     "bcryptCost": 10,
 
     "spawnWeapons": {
-        "TEAM_FAMILIES": [
+        "TEAM__CIVILLIAN": [
             {
                 "Name": "weapon_bat",
                 "Ammo": 1

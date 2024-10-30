@@ -99,6 +99,7 @@ function addWantedLevel(player, amount) {
 mp.events.add("playerEnterColshape", (player, colshape) => {
     if (colshape.cashAmount) {
         player.changeCurrency("cash", colshape.cashAmount);
+        player.call("startPickupAnimation"); // Memanggil animasi pengambilan barang di lantai
         player.changeMoney(colshape.cashAmount); // Gunakan metode changeMoney untuk menambah uang
 
         player.outputChatBox(`Got !{#72CC72}$${colshape.cashAmount} !{#FFFFFF}from the cash register. (shot)`);
