@@ -44,7 +44,6 @@ const toLoad = [
     "scripts/firingModes",
     "scripts/cashregisters",
     "scripts/deathScreen",
-    "scripts/crouch",
     "scripts/money",
     "scripts/spawnProtection",
     "scripts/killFeed",

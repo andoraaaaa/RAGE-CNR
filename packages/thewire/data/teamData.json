@@ -1,8 +1,8 @@
 {
     "TEAM__CIVILLIAN": {
         "Name": "Civillian",
-        "ColorName": "HUD_COLOUR_GREEN",
-        "ColorHex": "#72CC72",
+        "ColorName": "HUD_COLOUR_WHITE",
+        "ColorHex": "#FFFFFF",
         "VehicleColor": 53,
         "BlipColor": 2,
         "SpawnPos": {

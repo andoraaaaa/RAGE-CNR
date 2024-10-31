@@ -4,6 +4,99 @@ const database = require("../database");
 const logUtil = require("../logUtil");
 const config = require("../config");
 
+// Helper function to update Money in the database by adding or subtracting the amount
+function updatePlayerMoneyInDatabase(player, amount, incrementStoreRobbed = false) {
+    const username = player.accountName;
+
+    // Determine if the amount is positive or negative for the query
+    const query = incrementStoreRobbed 
+        ? "UPDATE accounts SET Money = Money + ?, storeRobbed = storeRobbed + 1 WHERE Username = ?"
+        : "UPDATE accounts SET Money = Money + ? WHERE Username = ?";
+
+    // Execute the database query
+    database.pool.query(query, [amount, username], (err) => {
+        if (err) {
+            console.error("Error updating player money in database:", err);
+        } else {
+            console.log(`Database updated successfully for ${username}. Current adjustment: $${amount}.`);
+        }
+    });
+}
+
+// Function to add to the player's wanted level
+function addWantedLevel(player, amount) {
+    // Validate the player object
+    if (!player || !player.data || !player.accountName) {
+        console.error("Invalid player object.");
+        return;
+    }
+
+    // Ensure the amount is a number
+    if (typeof amount !== 'number' || amount <= 0) {
+        console.error("Invalid amount for wanted level.");
+        return;
+    }
+
+    // Query to get the current wanted level from the database
+    const query = "SELECT wanted FROM accounts WHERE Username = ?";
+    database.pool.query(query, [player.accountName], (error, results) => {
+        if (error) {
+            console.error("Error retrieving wanted level:", error);
+            player.outputChatBox("An error occurred while retrieving your wanted level.");
+            return;
+        }
+
+        if (results.length === 0) {
+            console.error("No account found for this player.");
+            player.outputChatBox("No account found.");
+            return;
+        }
+
+        // Get the current wanted level from the database and ensure it's a number
+        const currentWantedLevel = Number(results[0].wanted); // Convert to number
+
+        // Increment the wanted level
+        const newWantedLevel = currentWantedLevel + amount;
+
+        // Update in memory
+        player.data.wanted = newWantedLevel;
+
+        // Update the database
+        const updateQuery = "UPDATE accounts SET wanted = ? WHERE Username = ?";
+        database.pool.query(updateQuery, [newWantedLevel, player.accountName], (updateError) => {
+            if (updateError) {
+                console.error("Error updating wanted level:", updateError);
+                player.outputChatBox("An error occurred while updating your wanted level.");
+                return;
+            }
+
+            player.outputChatBox(`Your wanted level has increased by !{#FF0000}${amount} !{#FFFFFF}and is now: !{#FF0000}${newWantedLevel}`);
+            player.call("showPictureNotification", ["Robbery News", "", `Your wanted level is now "${newWantedLevel}" carefull for the cops!`, "CHAR_CALL911"]);
+        });
+    });
+}
+
+module.exports = {
+    updatePlayerMoneyInDatabase,
+    addWantedLevel
+};
+
+// Helper function to update Money in the database by adding the amount
+function updatePlayerMoneyInDatabase(player, amount, incrementStoreRobbed = false) {
+    const username = player.accountName;
+    const query = incrementStoreRobbed 
+        ? "UPDATE accounts SET Money = Money + ?, storeRobbed = storeRobbed + 1 WHERE Username = ?"
+        : "UPDATE accounts SET Money = Money + ? WHERE Username = ?";
+
+    database.pool.query(query, [amount, username], (err) => {
+        if (err) {
+            console.error("Error updating player money in database:", err);
+        } else {
+            console.log("Database updated successfully.");
+        }
+    });
+}
+
 function loadAccount(player, sqlID, resultBox) {
     database.pool.query("SELECT * FROM accounts WHERE ID=? LIMIT 1", [sqlID], (error, result) => {
         if (error) {

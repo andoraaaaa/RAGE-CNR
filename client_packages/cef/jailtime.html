@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jail Timer</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: white;
+            font-family: Arial, sans-serif;
+            font-size: 24px;
+            margin: 0;
+        }
+        .jail-container {
+            text-align: center;
+        }
+        .jail-container h1 {
+            margin: 0;
+            font-size: 32px;
+        }
+        .jail-timer {
+            font-size: 48px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="jail-container">
+        <h1>You are now in jail</h1>
+        <p>Remaining Time: <span class="jail-timer" id="jail-timer">0</span> seconds</p>
+    </div>
+
+    <script>
+        // Receive remaining time from the client script
+        window.addEventListener("message", (event) => {
+            const remainingTime = event.data.remainingTime;
+            document.getElementById("jail-timer").textContent = remainingTime;
+        });
+    </script>
+</body>
+</html>

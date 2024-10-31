@@ -155,6 +155,25 @@ mp.events.addCommand("auncuff", (player, fullText, targetId) => {
 });
 
 
+// Server-Side Code
+mp.events.addCommand("getpos", (player) => {
+    // Check if the player is logged in
+    if (!player.isLoggedIn && player.admin > 0) {
+        player.outputChatBox("You must be logged in to use this command.");
+        return;
+    }
+
+    // Get the player's position
+    const position = player.position; // This retrieves the player's current position
+
+    // Format the position into a string
+    const posString = `Your current position is: X: ${position.x.toFixed(2)}, Y: ${position.y.toFixed(2)}, Z: ${position.z.toFixed(2)}`;
+
+    // Output the position to the player
+    player.outputChatBox(posString);
+});
+
+
 mp.events.addCommand("saveall", (player) => {
     if (player.isLoggedIn && player.admin > 0) {
         const connectedPlayers = mp.players.toArray(); // Get all connected players

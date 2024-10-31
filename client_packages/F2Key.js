@@ -2,7 +2,7 @@
 let cursorVisible = false;
 
 // Fungsi untuk toggle kursor
-mp.keys.bind(0x71, true, function() { // 0x71 adalah kode tombol F2
+mp.keys.bind(0x71, true, function () { // 0x71 adalah kode tombol F2
     cursorVisible = !cursorVisible;
     mp.gui.cursor.show(cursorVisible, cursorVisible); // Tampilkan atau sembunyikan kursor
 });
@@ -56,3 +56,63 @@ mp.events.add("startPickupAnimation", () => {
         mp.players.local.stopAnimTask(animDict, animName, 3.0);
     }, 2000);
 });
+
+// Client-Side Code for Countdown Display
+let jailTimerTextDraw; // Declare the text draw variable
+let blinkVisible = true; // Control visibility of the timer number
+let jailInterval; // Store interval reference
+let remainingTime = 0; // Track remaining jail time
+
+mp.events.add("startJailTimer", (jailTime) => {
+    remainingTime = jailTime;
+
+    // Clear previous interval if any
+    if (jailInterval) clearInterval(jailInterval);
+
+    // Start the interval for the countdown
+    jailInterval = setInterval(() => {
+        remainingTime--;
+
+        // Blink logic for the timer
+        blinkVisible = !blinkVisible; // Toggle visibility for blinking effect
+
+        // Check if the time has expired
+        if (remainingTime <= 0) {
+            clearInterval(jailInterval);
+            mp.gui.chat.push("You are now free."); // Notify the player
+
+            // Reset remainingTime after release
+            remainingTime = 0;
+        }
+    }, 1000); // Update every second
+});
+
+// Keep rendering the static text and the countdown timer
+mp.events.add("render", () => {
+    if (remainingTime > 0) {
+        // Draw the static jail message
+        mp.game.graphics.drawText("You have been arrested and are now in jail.", [0.5, 0.11], {
+            font: 0,
+            color: [255, 255, 255, 255],
+            scale: [0.5, 0.5],
+            outline: true
+        });
+        mp.game.graphics.drawText("Time Remaining :", [0.5, 0.15], {
+            font: 0,
+            color: [255, 0, 0, 255],
+            scale: [0.5, 0.5],
+            outline: true
+        });
+
+        // Draw the blinking timer text only if blinkVisible is true
+        if (blinkVisible) {
+            mp.game.graphics.drawText(remainingTime + " seconds", [0.5, 0.19], {
+                font: 0,
+                color: [255, 0, 0, 255],
+                scale: [0.5, 0.5],
+                outline: true
+            });
+        }
+    }
+});
+
