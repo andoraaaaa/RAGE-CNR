@@ -52,6 +52,9 @@ const toLoad = [
     "scripts/killstreaks",
     "scripts/discord",
     "scripts/playerCuff",
+    "scripts/betterClientCommands",
+    "scripts/advancedChat",
+    "scripts/speedometer",
 
     "ui/teamSelectionText",
     "ui/attachedToMinimap",
