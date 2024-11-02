@@ -29,6 +29,7 @@ const teamDataForClient = JSON.stringify(Object.keys(teamData).map((team) => {
 
 mp.events.add("playerReady", (player) => {
     player.call("receiveTeamData", [teamDataForClient]);
+    player.call("updateTeamSelection", ["Select Team", true]);
 });
 
 mp.events.add("requestSpawn", (player, teamIdx, skinModel) => {
@@ -76,6 +77,7 @@ mp.events.add("requestSpawn", (player, teamIdx, skinModel) => {
         player.dimension = 0;
         player.spawn(teamData[teamName].SpawnPos);
         player.call("setSelectionState", [false]);
+        player.call("updateTeamSelection", ["Select Team", false]);
 
         // Tentukan presence message berdasarkan wanted level
         const presenceName = wantedLevel > 150 ? `${player.accountName} (MOST WANTED)` : player.accountName;

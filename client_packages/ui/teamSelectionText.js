@@ -34,7 +34,6 @@ var sharedDrawingVariables = new Proxy(sharedVariables, {
 mp.events.add("updateTeamSelection", (teamName, isActive) => {
     sharedDrawingVariables.teamName = teamName;
     sharedDrawingVariables.selectionActive = isActive;
-    mp.console.logInfo(`Team Name diubah menjadi: ${teamName}`);
 });
 
 // Render teks jika selectionActive aktif
