@@ -84,6 +84,7 @@ module.exports = {
 // Helper function to update Money in the database by adding the amount
 function updatePlayerMoneyInDatabase(player, amount, incrementStoreRobbed = false) {
     const username = player.accountName;
+
     const query = incrementStoreRobbed 
         ? "UPDATE accounts SET Money = Money + ?, storeRobbed = storeRobbed + 1 WHERE Username = ?"
         : "UPDATE accounts SET Money = Money + ? WHERE Username = ?";
@@ -92,10 +93,36 @@ function updatePlayerMoneyInDatabase(player, amount, incrementStoreRobbed = fals
         if (err) {
             console.error("Error updating player money in database:", err);
         } else {
-            console.log("Database updated successfully.");
+            console.log(`Database updated successfully for ${username}. Current adjustment: +$${amount}.`);
+            // Refresh the money textdraw
+            refreshMoneyTextdraw(player);
         }
     });
 }
+
+
+function refreshMoneyTextdraw(player) {
+    player.call("updateMoneyTextdraw", [currentMoney]);
+}
+
+
+mp.events.add("requestMoneyData", (player) => {
+    // Fetch player's money and bank data from the database
+    database.pool.query("SELECT Money, Bank FROM accounts WHERE Username=?", [player.accountName], (error, results) => {
+        if (error) {
+            logUtil.log.error(`Error fetching money data for player ${player.accountName}: ${error.message}`);
+            return;
+        }
+
+        if (results.length > 0) {
+            const { Money, Bank } = results[0];
+            // Send the data back to the client
+            player.call("receiveMoneyData", [Money, Bank]);
+        } else {
+            logUtil.log.warn(`No account found for player ${player.accountName}`);
+        }
+    });
+});
 
 function loadAccount(player, sqlID, resultBox) {
     database.pool.query("SELECT * FROM accounts WHERE ID=? LIMIT 1", [sqlID], (error, result) => {

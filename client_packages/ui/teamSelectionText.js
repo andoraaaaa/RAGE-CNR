@@ -39,7 +39,7 @@ mp.events.add("updateTeamSelection", (teamName, isActive) => {
 // Render teks jika selectionActive aktif
 mp.events.add("render", () => {
     if (sharedDrawingVariables.selectionActive) {
-        // Menampilkan nama tim di layar
+        // Menampilkan nama tim di layar saat di halaman pemilihan tim
         mp.game.graphics.drawText(sharedDrawingVariables.teamName, [0.5, 0.875], {
             font: 4,
             color: [255, 255, 255, 255],
@@ -48,11 +48,20 @@ mp.events.add("render", () => {
         });
 
         // Menampilkan instruksi
-        mp.game.graphics.drawText("Left/right arrow keys to switch between teams~n~Shift to spawn", [0.5, 0.925], {
+        mp.game.graphics.drawText("~r~Left~w~/~b~right ~w~arrow keys to switch between teams~n~Shift to spawn", [0.5, 0.925], {
             font: 0,
             color: [255, 255, 255, 255],
             scale: [0.4, 0.4],
             outline: true
         });
     }
+
+    // Menampilkan text draw setelah player melakukan spawn
+    mp.game.graphics.drawText("~g~CCS ~w~Cops and Robbers", [0.90, 0.85], {
+        font: 7,
+        color: [255, 255, 255, 200],
+        scale: [0.65, 0.65],
+        outline: true,
+        align: 1 // Menempatkan teks di pojok kanan bawah
+    });
 });

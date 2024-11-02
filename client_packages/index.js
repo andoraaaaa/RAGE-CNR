@@ -57,6 +57,7 @@ const toLoad = [
     "scripts/speedometer",
 
     "ui/teamSelectionText",
+    "ui/playerMoney",
     "ui/attachedToMinimap",
     "ui/money",
     "ui/killFeed",
