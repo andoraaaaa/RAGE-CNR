@@ -30,6 +30,8 @@ const teamDataForClient = JSON.stringify(Object.keys(teamData).map((team) => {
 mp.events.add("playerReady", (player) => {
     player.call("receiveTeamData", [teamDataForClient]);
     player.call("updateTeamSelection", ["Select Team", true]);
+    player.outputChatBox(`!{#2aeee5}[SERVER] !{#FFFFFF}Welcome to RAGEMP !{#2a51ee}Cops !{#FFFFFF}and !{#FF0000}Robbers!{#FFFFFF}.`);
+    
 });
 
 mp.events.add("requestSpawn", (player, teamIdx, skinModel) => {
@@ -45,7 +47,6 @@ mp.events.add("requestSpawn", (player, teamIdx, skinModel) => {
     checkWantedLevel(player, (wantedLevel) => {
         if (wantedLevel > 0 && (teamName === "TEAM_ARMY" || teamName === "TEAM_POLICE")) {
             player.outputChatBox("!{#E03232}ERROR: !{#FFFFFF}You have wanted level on your civilian class. You can't spawn as !{#5DB6E5}LEO !{#FFFFFF}at this moment.");
-            logUtil.log.warn(`Player ${player.name} with wanted level (${wantedLevel}) tried to join ${teamName}.`);
             return;
         }
 
@@ -88,6 +89,6 @@ mp.events.add("requestSpawn", (player, teamIdx, skinModel) => {
 mp.events.add("requestTeamSelection", (player) => {
     if (!player.spawnInTeamSelection) {
         player.spawnInTeamSelection = true;
-        player.outputChatBox("You'll be sent to team selection on the next spawn.");
+        player.outputChatBox("!{#2aeee5}[SERVER] !{#FFFFFF}You'll be sent to team selection on the next spawn.");
     }
 });

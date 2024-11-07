@@ -1,6 +1,6 @@
 {
 	"maxplayers" : 100,
-	"name" : "RAGE:MP Unofficial server", 
+	"name" : "RAGE CNR SERVER (TEST)", 
 	"gamemode" : "freeroam", 
 	"stream-distance" : 300.0,
 	"announce" : false,

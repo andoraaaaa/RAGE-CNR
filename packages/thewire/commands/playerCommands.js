@@ -54,9 +54,9 @@ mp.events.addCommand("mywanted", (player) => {
 
         if (results.length > 0) {
             const wantedLevel = results[0].wanted; // Assuming 'wanted' is the column name
-            player.outputChatBox(`Your current wanted level is: ${wantedLevel}`);
+            player.outputChatBox(`!{#2aeee5}[SERVER] !{#FFFFFF}Your current wanted level is: !{#FF0000}${wantedLevel}`);
         } else {
-            player.outputChatBox("Could not find your account information.");
+            player.outputChatBox("!{#E03232}[ERROR] !{#FFFFFF}Could not find your account information.");
         }
     });
 });

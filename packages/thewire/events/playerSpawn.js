@@ -20,14 +20,14 @@ mp.events.add("playerSpawn", (player) => {
                 const teamWeapons = config.spawnWeapons[currentTeam] || config.spawnWeapons.default;
                 teamWeapons.forEach((weapon) => player.giveWeapon(mp.joaat(weapon.Name), weapon.Ammo));
 
-                player.outputChatBox("Spawn protection ended.");
+                player.outputChatBox("!{#2aeee5}[SERVER] !{#FFFFFF}Spawn protection ended.");
                 mp.players.call("showNotification", [`<C>${player.name}</C> Spawn as <C>${player.data.currentTeam}</C>`]);
                 clearTimeout(player.spawnProtectionTimer);
                 player.spawnProtectionTimer = undefined;
             }, config.spawnProtectionSeconds * 1000);
 
             player.data.spawnProtection = true;
-            player.outputChatBox(`You're spawn protected for ${config.spawnProtectionSeconds} seconds.`);
+            player.outputChatBox(`!{#2aeee5}[SERVER] !{#FFFFFF}You're spawn protected for ${config.spawnProtectionSeconds} seconds.`);
         } else {
             // Ambil senjata berdasarkan tim saat ini
             const teamWeapons = config.spawnWeapons[currentTeam] || config.spawnWeapons.default;

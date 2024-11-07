@@ -5,6 +5,7 @@ const database = require("../database");
 mp.events.add("playerJoin", (player) => {
     logUtil.igEventLog.info(`[JOIN] ${player.name} joined. (ID: ${player.id} - SC: ${player.socialClub} - ${player.ip})`);
     mp.players.call("showNotification", [`<C>${player.name}</C> joined.`]);
+    mp.players.broadcast(`!{#2aeee5}[SERVER] !{#FFFFFF}${player.name} joined.`);
 
     player.dimension = config.loginDimension;
     player.isLoggedIn = false;

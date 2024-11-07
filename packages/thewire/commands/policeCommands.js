@@ -8,43 +8,43 @@ const { updatePlayerMoneyInDatabase} = require("../events/accountEvents"); // Im
 mp.events.addCommand("cuff", (player, _, targetId) => {
     // Ensure targetId is provided and is valid
     if (!targetId) {
-        player.outputChatBox("Usage: /cuff [id]");
+        player.outputChatBox("!{#FF8555}SYNTAX: !{#FFFFFF}Usage: /cuff [id]");
         return;
     }
 
     // Check if the player is logged in
     if (!player.isLoggedIn) {
-        player.outputChatBox("You must be logged in to use this command.");
+        player.outputChatBox("!{#E03232}ERROR: !{#FFFFFF}You must be logged in to use this command.");
         return;
     }
 
     // Check if the player belongs to TEAM_ARMY or TEAM_POLICE
     if (player.data.currentTeam !== "TEAM_ARMY" && player.data.currentTeam !== "TEAM_POLICE") {
-        player.outputChatBox("Only LEO team can use this command.");
+        player.outputChatBox("!{#E03232}ERROR: !{#FFFFFF}Only LEO team can use this command.");
         return;
     }
 
     const targetPlayer = mp.players.at(parseInt(targetId));
     if (!targetPlayer) {
-        player.outputChatBox("Target player not found.");
+        player.outputChatBox("!{#E03232}ERROR: !{#FFFFFF}Target player not found.");
         return;
     }
 
     // Check if target is logged in
     if (!targetPlayer.isLoggedIn) {
-        player.outputChatBox("Target player must be logged in to cuff.");
+        player.outputChatBox("!{#E03232}ERROR: !{#FFFFFF}Target player must be logged in to cuff.");
         return;
     }
 
     // Check if target has a wanted level of at least 6
     if (targetPlayer.data.wanted < 6) {
-        player.outputChatBox("You can only cuff players with a wanted level of 6 or higher.");
+        player.outputChatBox("!{#E03232}ERROR: !{#FFFFFF}You can only cuff players with a wanted level of 6 or higher.");
         return;
     }
 
     // Check if target is already cuffed
     if (targetPlayer.data.isCuffed) {
-        player.outputChatBox("Target player is already cuffed.");
+        player.outputChatBox("!{#E03232}ERROR: !{#FFFFFF}Target player is already cuffed.");
         return;
     }
 
@@ -59,37 +59,37 @@ mp.events.addCommand("cuff", (player, _, targetId) => {
 mp.events.addCommand("arrest", (player, _, targetId) => {
     // Ensure targetId is provided and is valid
     if (!targetId) {
-        player.outputChatBox("Usage: /arrest [id]");
+        player.outputChatBox("!{#FF8555}SYNTAX: !{#FFFFFF}Usage: /arrest [id]");
         return;
     }
 
     // Check if the player is logged in
     if (!player.isLoggedIn) {
-        player.outputChatBox("You must be logged in to use this command.");
+        player.outputChatBox("!{#E03232}ERROR: !{#FFFFFF}You must be logged in to use this command.");
         return;
     }
 
     // Check if the player belongs to TEAM_ARMY or TEAM_POLICE
     if (player.data.currentTeam !== "TEAM_ARMY" && player.data.currentTeam !== "TEAM_POLICE") {
-        player.outputChatBox("Only LEO team can use this command.");
+        player.outputChatBox("!{#E03232}ERROR: !{#FFFFFF}Only LEO team can use this command.");
         return;
     }
 
     const targetPlayer = mp.players.at(parseInt(targetId));
     if (!targetPlayer) {
-        player.outputChatBox("Target player not found.");
+        player.outputChatBox("!{#E03232}ERROR: !{#FFFFFF}Target player not found.");
         return;
     }
 
     // Check if target is logged in
     if (!targetPlayer.isLoggedIn) {
-        player.outputChatBox("Target player must be logged in to arrest.");
+        player.outputChatBox("!{#E03232}ERROR: !{#FFFFFF}Target player must be logged in to arrest.");
         return;
     }
 
     // Check if the target player is cuffed
     if (!targetPlayer.data.isCuffed) {
-        player.outputChatBox("You can only arrest cuffed players.");
+        player.outputChatBox("!{#E03232}ERROR: !{#FFFFFF}You can only arrest cuffed players.");
         return;
     }
 
@@ -124,14 +124,14 @@ mp.events.addCommand("arrest", (player, _, targetId) => {
     updatePlayerMoneyInDatabase(targetPlayer, -fineAmount); // Update in the database
 
     // Notify players
-    targetPlayer.outputChatBox(`You have been arrested and are now in jail for !{#FF0000}${jailTime} !{#FFFFFF}seconds. You have been fined $${fineAmount}.`);
+    targetPlayer.outputChatBox(`!{#2aeee5}[SERVER] !{#FFFFFF}You have been arrested and are now in jail for !{#FF0000}${jailTime} !{#FFFFFF}seconds. You have been fined $${fineAmount}.`);
     targetPlayer.data.isCuffed = false; // Remove cuff status here
     targetPlayer.call("stopCuffAnimation"); // Calls client-side to stop the cuff animation
 
     // Give payment to the police officer
     player.changeMoney(payment); // Give money to the officer
     updatePlayerMoneyInDatabase(player, payment); // Update in the database
-    player.outputChatBox(`You have arrested player ID !{#FF0000}${targetId}. !{#FFFFFF}You received !{#72CC72}$${payment} !{#FFFFFF}as a reward.`);
+    player.outputChatBox(`!{#2aeee5}[SERVER] !{#FFFFFF}You have arrested player ID !{#FF0000}${targetId}. !{#FFFFFF}You received !{#72CC72}$${payment} !{#FFFFFF}as a reward.`);
 
     // Start jail timer and update database
     targetPlayer.call("startJailTimer", [jailTime]); // Emit the start timer event with jail time
@@ -150,7 +150,7 @@ mp.events.addCommand("arrest", (player, _, targetId) => {
             clearInterval(jailInterval);
             targetPlayer.isCuffed = false;
             targetPlayer.position = new mp.Vector3(422.92, -978.69, 30.71); // Teleport player after jail time
-            targetPlayer.outputChatBox("You are now free.");            
+            targetPlayer.outputChatBox("!{#2aeee5}[SERVER] !{#FFFFFF}You are now free.");            
             targetPlayer.call("stopJailTimer"); // Stop the client-side timer
         }
     }, 1000); // 1 second interval
@@ -169,37 +169,37 @@ mp.events.add("playerArrested", (player) => {
 mp.events.addCommand("uncuff", (player, _, targetId) => {
     // Ensure targetId is provided and is valid
     if (!targetId) {
-        player.outputChatBox("Usage: /uncuff [id]");
+        player.outputChatBox("!{#FF8555}SYNTAX: !{#FFFFFF}Usage: /uncuff [id]");
         return;
     }
 
     // Check if the player is logged in
     if (!player.isLoggedIn) {
-        player.outputChatBox("You must be logged in to use this command.");
+        player.outputChatBox("!{#E03232}ERROR: !{#FFFFFF}You must be logged in to use this command.");
         return;
     }
 
     // Check if the player belongs to TEAM_ARMY or TEAM_POLICE
     if (player.data.currentTeam !== "TEAM_ARMY" && player.data.currentTeam !== "TEAM_POLICE") {
-        player.outputChatBox("Only LEO team can use this command.");
+        player.outputChatBox("!{#E03232}ERROR: !{#FFFFFF}Only LEO team can use this command.");
         return;
     }
 
     const targetPlayer = mp.players.at(parseInt(targetId));
     if (!targetPlayer) {
-        player.outputChatBox("Target player not found.");
+        player.outputChatBox("!{#E03232}ERROR: !{#FFFFFF}Target player not found.");
         return;
     }
 
     // Check if target is logged in
     if (!targetPlayer.isLoggedIn) {
-        player.outputChatBox("Target player must be logged in to uncuff.");
+        player.outputChatBox("!{#E03232}ERROR: !{#FFFFFF}Target player must be logged in to uncuff.");
         return;
     }
 
     // Check if target is cuffed
     if (!targetPlayer.data.isCuffed) {
-        player.outputChatBox("Target player is not cuffed.");
+        player.outputChatBox("!{#E03232}ERROR: !{#FFFFFF}Target player is not cuffed.");
         return;
     }
 
@@ -208,5 +208,5 @@ mp.events.addCommand("uncuff", (player, _, targetId) => {
     targetPlayer.outputChatBox("You have been uncuffed.");
     targetPlayer.call("stopCuffAnimation"); // Calls client-side to stop the cuff animation
 
-    player.outputChatBox(`You have uncuffed player ID ${targetId}.`);
+    player.outputChatBox(`!{#2aeee5}[SERVER] !{#FFFFFF}You have uncuffed player ID ${targetId}.`);
 });

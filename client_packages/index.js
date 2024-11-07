@@ -55,6 +55,9 @@ const toLoad = [
     "scripts/betterClientCommands",
     "scripts/advancedChat",
     "scripts/speedometer",
+    "courier/index",
+    "epic-attachments/index",
+    "static-attachments/index",
 
     "ui/teamSelectionText",
     "ui/playerMoney",

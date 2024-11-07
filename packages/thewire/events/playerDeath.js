@@ -34,15 +34,15 @@ mp.events.add("playerDeath", (player, reason, killer) => {
             killer.changeKillstreak(1);
             killer.changeMoney(money);
 
-            killer.outputChatBox(`Earned !{#72CC72}$${money} !{#FFFFFF}for killing !{${pTeam.ColorHex}}${player.name}(${player.id}).`);
-            player.outputChatBox(`Lost !{#72CC72}$${money} !{#FFFFFF}for dying.`);
+            killer.outputChatBox(`!{#2aeee5}[SERVER] !{#FFFFFF}Earned !{#72CC72}$${money} !{#FFFFFF}for killing !{${pTeam.ColorHex}}${player.name}(${player.id}).`);
+            player.outputChatBox(`!{#2aeee5}[SERVER] !{#FFFFFF}Lost !{#72CC72}$${money} !{#FFFFFF}for dying.`);
 
             if (killer.killstreak % 5 === 0) {
                 mp.players.broadcast(`!{${kTeam.ColorHex}}${killer.name}(${killer.id}) !{#FFFFFF}is on a killstreak with ${killer.killstreak} kills!`);
 
                 let reward = Math.round(killer.killstreak * config.killstreakReward);
                 killer.changeMoney(reward);
-                killer.outputChatBox(`Earned !{#72CC72}$${reward} !{#FFFFFF}from your killstreak.`);
+                killer.outputChatBox(`!{#2aeee5}[SERVER] !{#FFFFFF}Earned !{#72CC72}$${reward} !{#FFFFFF}from your killstreak.`);
             }
 
             if (player.killstreak >= 5) {
@@ -50,7 +50,7 @@ mp.events.add("playerDeath", (player, reason, killer) => {
 
                 let ksEndReward = Math.round(player.killstreak * Math.round(config.killstreakReward / 2));
                 killer.changeMoney(ksEndReward);
-                killer.outputChatBox(`Earned !{#72CC72}$${ksEndReward} !{#FFFFFF}for ending a killstreak.`);
+                killer.outputChatBox(`!{#2aeee5}[SERVER] !{#FFFFFF}Earned !{#72CC72}$${ksEndReward} !{#FFFFFF}for ending a killstreak.`);
             }
 
             player.changeMoney(-money);
@@ -58,7 +58,7 @@ mp.events.add("playerDeath", (player, reason, killer) => {
             player.removeAllWeapons();
         } else {
             killer.changeMoney(-config.teamKillPenalty);
-            killer.outputChatBox(`Do not kill your team members! !{#72CC72}$${config.teamKillPenalty} !{#FFFFFF}taken as punishment.`);
+            killer.outputChatBox(`!{#2aeee5}[SERVER] !{#FFFFFF}Do not kill your team members! !{#72CC72}$${config.teamKillPenalty} !{#FFFFFF}taken as punishment.`);
             player.outputChatBox("!{#FF8555}UNFAIR DEATH: !{#FFFFFF}You'll keep your killstreak and weapons. This death also won't reflect on your K/D ratio.");
         }
 
@@ -80,7 +80,7 @@ mp.events.add("playerDeath", (player, reason, killer) => {
         player.setKillstreak(0);
         player.changeMoney(-100);
         player.removeAllWeapons();
-        player.outputChatBox("Lost !{#72CC72}$100 !{#FFFFFF}for dying.");
+        player.outputChatBox("!{#2aeee5}[SERVER] !{#FFFFFF}Lost !{#72CC72}$100 !{#FFFFFF}for dying.");
     }
 
     player.data.isCrouched = false;

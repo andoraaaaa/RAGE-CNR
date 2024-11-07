@@ -8,55 +8,57 @@
 
     <body>
         <main class="container">
-            <div class="grid-flex">
-                <div id="mainBox" class="flex-1 form">
-                    <div class="grid-flex">
-                        <div class="flex-2">
-                            <h4>Welcome!</h4>
+            <div class="login-wrap">
+                <div class="login-html">
+                    <input id="tab-1" type="radio" name="tab" class="sign-in" checked>
+                    <label for="tab-1" class="tab">Login</label>
+                    <input id="tab-2" type="radio" name="tab" class="sign-up">
+                    <label for="tab-2" class="tab">Register</label>
 
-                            <p>Please select what you'd like to do:</p>
-                            <button onclick="switchTo('login')" type="button">Login</button>
-                            <button onclick="switchTo('register')" type="button">Register</button>
+                    <div class="login-form">
+                        <!-- Login Form -->
+                        <div id="loginBox" class="sign-in-htm">
+                            <div id="loginResult" class="form-result text-inverted bg-error"></div>
+                            <form>
+                                <div class="group">
+                                    <label for="loginUser" class="label">Username</label>
+                                    <input id="loginUser" type="text" name="username" class="input" placeholder="Username" maxlength="32">
+                                </div>
+                                <div class="group">
+                                    <label for="loginPass" class="label">Password</label>
+                                    <input id="loginPass" type="password" name="password" class="input" placeholder="Password">
+                                </div>
+                                <div class="group">
+                                    <button onclick="sendLogin()" type="button" class="button">Login</button>
+                                </div>
+                                <div class="group">
+                                    <center><p class="label">Press F2 to enabled cursor</p></center>
+                                </div>
+                            </form>
                         </div>
 
-                        <div class="flex-1">
-                            <h4>Rules:</h4>
-
-                            <ul class="inner">
-                                <li>Have fun</li>
-                                <li>Don't flame</li>
-                                <li>Don't RP</li>
-                                <li>There's no staff anyway</li>
-                            </ul>
+                        <!-- Register Form -->
+                        <div id="registerBox" class="sign-up-htm">
+                            <div id="registerResult" class="form-result text-inverted bg-error"></div>
+                            <form>
+                                <div class="group">
+                                    <label for="registerUser" class="label">Username</label>
+                                    <input id="registerUser" type="text" name="username" class="input" placeholder="Username" maxlength="32">
+                                </div>
+                                <div class="group">
+                                    <label for="registerPass" class="label">Password</label>
+                                    <input id="registerPass" type="password" name="password" class="input" placeholder="Password">
+                                </div>
+                                <div class="group">
+                                    <label for="registerVerification" class="label">Verify Password</label>
+                                    <input id="registerVerification" type="password" name="password2" class="input" placeholder="Verify Password">
+                                </div>
+                                <div class="group">
+                                    <button onclick="sendRegister()" type="button" class="button">Register</button>
+                                </div>
+                            </form>
                         </div>
                     </div>
-                </div>
-
-                <div id="loginBox" class="flex-4 form">
-                    <h4>Login</h4>
-
-                    <div id="loginResult" class="form-result text-inverted bg-error"></div>
-
-                    <form>
-                        <input id="loginUser" type="text" name="username" placeholder="Username" maxlength="32">
-                        <input id="loginPass" type="password" name="password" placeholder="Password">
-                        <button onclick="sendLogin()" type="button">Login</button>
-                        <button onclick="switchTo('main')" type="button">Go back</button>
-                    </form>
-                </div>
-
-                <div id="registerBox" class="flex-4 form">
-                    <h4>Register</h4>
-
-                    <div id="registerResult" class="form-result text-inverted bg-error"></div>
-
-                    <form>
-                        <input id="registerUser" type="text" name="username" placeholder="Username" maxlength="32">
-                        <input id="registerPass" type="password" name="password" placeholder="Password">
-                        <input id="registerVerification" type="password" name="password2" placeholder="Verify Password">
-                        <button onclick="sendRegister()" type="button">Register</button>
-                        <button onclick="switchTo('main')" type="button">Go back</button>
-                    </form>
                 </div>
             </div>
         </main>
