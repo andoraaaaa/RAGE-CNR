@@ -4,44 +4,118 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Player Stats</title>
-    <link href="css/skeleton.min.css" rel="stylesheet" />
-    <link href="css/style.css" rel="stylesheet" />
+    <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Basic styling */
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: transparent; /* Background transparent */
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            padding: 20px;
+        }
+
+        .statsForm {
+            background: rgba(44, 62, 80, 0.9); /* Slightly transparent background */
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #statsResult {
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #27ae60;
+            margin-bottom: 20px;
+        }
+
+        .player-stats {
+            display: grid;
+            gap: 10px;
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(52, 73, 94, 0.9); /* Slightly transparent for individual stat items */
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .stat-item strong {
+            color: #bdc3c7;
+            margin-right: 8px;
+            white-space: nowrap;
+        }
+
+        .stat-item span {
+            color: #ecf0f1;
+            white-space: nowrap;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            .stat-item {
+                font-size: 14px;
+            }
+        }
+    </style>
 </head>
 <body>
     <main class="container">
-        <div class="grid-flex">
-            <div class="flex-1 statsForm">
-                <div id="statsResult" class="form-result text-inverted bg-success">PLAYER STATS | Press ESC to close this page.</div>
-                <br>
-                <div class="player-stats">
-                    <div class="stat-item">
-                        <strong>Player Name:</strong> <span id="playerName"></span>
-                    </div>
-                    <div class="stat-item">
-                        <strong>Account ID:</strong> <span id="accountId"></span>
-                    </div>
-                    <div class="stat-item">
-                        <strong>Kills:</strong> <span id="kills"></span>
-                    </div>
-                    <div class="stat-item">
-                        <strong>Deaths:</strong> <span id="deaths"></span>
-                    </div>
-                    <div class="stat-item">
-                        <strong>K/D Ratio:</strong> <span id="kdRatio"></span>
-                    </div>
-                    <div class="stat-item">
-                        <strong>Money:</strong> $<span id="money"></span>
-                    </div>
-                    <div class="stat-item">
-                        <strong>Register Date:</strong> <span id="registerDate"></span>
-                    </div>
+        <div class="statsForm">
+            <div id="statsResult">PLAYER STATS | Press ESC to close this page.</div>
+            <div class="player-stats">
+                <div class="stat-item">
+                    <strong>Player Name:</strong> <span id="playerName"></span>
+                </div>
+                <div class="stat-item">
+                    <strong>Account ID:</strong> <span id="accountId"></span>
+                </div>
+                <div class="stat-item">
+                    <strong>Kills:</strong> <span id="kills"></span>
+                </div>
+                <div class="stat-item">
+                    <strong>Deaths:</strong> <span id="deaths"></span>
+                </div>
+                <div class="stat-item">
+                    <strong>K/D Ratio:</strong> <span id="kdRatio"></span>
+                </div>
+                <div class="stat-item">
+                    <strong>Money:</strong> $<span id="money"></span>
+                </div>
+                <div class="stat-item">
+                    <strong>Register Date:</strong> <span id="registerDate"></span>
                 </div>
             </div>
         </div>
     </main>
 
     <script type="text/javascript">
-        // Fungsi untuk menampilkan data statistik pemain
         function displayPlayerStats(data) {
             document.getElementById("playerName").innerText = data.playerName;
             document.getElementById("accountId").innerText = data.accountId;
@@ -52,10 +126,9 @@
             document.getElementById("registerDate").innerText = data.registerDate;
         }
 
-        // Event handler untuk menerima data statistik dari server
-        if (typeof mp !== "undefined") { // Pastikan script berjalan di RAGE:MP
+        if (typeof mp !== "undefined") {
             mp.events.add("sendPlayerStats", (data) => {
-                displayPlayerStats(JSON.parse(data)); // Memanggil fungsi dengan data JSON yang diterima dari server
+                displayPlayerStats(JSON.parse(data));
             });
         }
     </script>
