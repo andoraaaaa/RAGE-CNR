@@ -161,9 +161,14 @@ mp.events.add("playerDeath", (player, reason, killer) => {
     mp.game.graphics.startScreenEffect("DeathFailMPIn", 0, true);
     mp.game.cam.setCamEffect(1);
 
-    if (textTimer) clearTimeout(textTimer);
+    if (textTimer !== null) {
+        clearTimeout(textTimer);
+        textTimer = null;
+    }
+
     textTimer = setTimeout(function() {
         showBigMessage("~r~Wasted", (killer ? `${killer.handle === player.handle ? `You committed suicide.` : getDeathMessage(killer.name, reason, killer.getVariable("nametagColor"))}` : "You died."));
+        textTimer = null; // Reset setelah pesan muncul
     }, 750);
 });
 
@@ -174,7 +179,7 @@ mp.events.add("playerSpawn", () => {
     mp.game.graphics.stopScreenEffect("DeathFailMPIn");
     mp.game.cam.setCamEffect(0);
 
-    if (textTimer) {
+    if (textTimer !== null) {
         clearTimeout(textTimer);
         textTimer = null;
     }

@@ -33,8 +33,7 @@ require("./nativeui/index.js");
 // Daftar file yang akan dimuat
 const toLoad = [
     "scripts/changeDetect",
-    "scripts/notifications",
-    "scripts/headshots",
+    "scripts/notifications",    
     "scripts/teams",
     "scripts/playerBlips",
     "scripts/welcome",

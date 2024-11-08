@@ -127,7 +127,7 @@ mp.events.add("requestMoneyData", (player) => {
 function loadAccount(player, sqlID, resultBox) {
     database.pool.query("SELECT * FROM accounts WHERE ID=? LIMIT 1", [sqlID], (error, result) => {
         if (error) {
-            logUtil.log.error(`Account loading failed: ${error.message}`);
+            logUtil.log.error(`!{#E03232}ERROR: !{#FFFFFF}Account loading failed: ${error.message}`);
             player.call("receiveAuthResult", [false, resultBox, "Failed loading account data."]);
         } else {
             if (result.length > 0) {
@@ -146,7 +146,7 @@ function loadAccount(player, sqlID, resultBox) {
                 if (config.accountSaveInterval > 0) {
                     player.saveTimer = setInterval(() => {
                         player.saveAccount();
-                        player.outputChatBox("Account saved.");
+                        player.outputChatBox("!{#2aeee5}[SERVER] !{#FFFFFF}Account saved.");
                     }, config.accountSaveInterval * 60000);
                 }
 
