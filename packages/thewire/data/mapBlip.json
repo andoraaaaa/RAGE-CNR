@@ -1,0 +1,72 @@
+{
+    "TEAM_CIVILLIAN": [
+      {
+        "name": "Spawn Civilian 1",
+        "coordinates": { "x": -94.07469177246094, "y": -1466.963623046875, "z": 33.098819732666016 },
+        "blipColor": 2,
+        "markerColor": "#FFFFFF",
+        "labelColor": "#FFFFFF"
+      },
+      {
+        "name": "Spawn Civilian 2",
+        "coordinates": { "x": -100.07469177246094, "y": -1500.963623046875, "z": 34.098819732666016 },
+        "blipColor": 2,
+        "markerColor": "#FFFFFF",
+        "labelColor": "#FFFFFF"
+      },
+      {
+        "name": "Spawn Civilian 3",
+        "coordinates": { "x": -110.07469177246094, "y": -1450.963623046875, "z": 35.098819732666016 },
+        "blipColor": 2,
+        "markerColor": "#FFFFFF",
+        "labelColor": "#FFFFFF"
+      }
+    ],
+    "TEAM_ARMY": [
+      {
+        "name": "Spawn Army 1",
+        "coordinates": { "x": 84.98970031738281, "y": -1958.7568359375, "z": 21.121671676635742 },
+        "blipColor": 7,
+        "markerColor": "#8466E2",
+        "labelColor": "#8466E2"
+      },
+      {
+        "name": "Spawn Army 2",
+        "coordinates": { "x": 90.98970031738281, "y": -1960.7568359375, "z": 22.121671676635742 },
+        "blipColor": 7,
+        "markerColor": "#8466E2",
+        "labelColor": "#8466E2"
+      },
+      {
+        "name": "Spawn Army 3",
+        "coordinates": { "x": 95.98970031738281, "y": -1970.7568359375, "z": 23.121671676635742 },
+        "blipColor": 7,
+        "markerColor": "#8466E2",
+        "labelColor": "#8466E2"
+      }
+    ],
+    "TEAM_POLICE": [
+      {
+        "name": "Spawn Police 1",
+        "coordinates": { "x": 825.39, "y": -1290.04, "z": 28.24 },
+        "blipColor": 26,
+        "markerColor": "#5DB6E5",
+        "labelColor": "#5DB6E5"
+      },
+      {
+        "name": "Spawn Police 2",
+        "coordinates": { "x": 830.39, "y": -1300.04, "z": 29.24 },
+        "blipColor": 26,
+        "markerColor": "#5DB6E5",
+        "labelColor": "#5DB6E5"
+      },
+      {
+        "name": "Spawn Police 3",
+        "coordinates": { "x": 840.39, "y": -1305.04, "z": 30.24 },
+        "blipColor": 26,
+        "markerColor": "#5DB6E5",
+        "labelColor": "#5DB6E5"
+      }
+    ]
+  }
+  

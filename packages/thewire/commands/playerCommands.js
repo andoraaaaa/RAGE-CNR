@@ -61,8 +61,6 @@ mp.events.addCommand("mywanted", (player) => {
     });
 });
 
-
-
 mp.events.addCommand("stats", (player, targetID) => {
     if (player.isLoggedIn) {
         targetID = Number(targetID);
@@ -79,12 +77,23 @@ mp.events.addCommand("stats", (player, targetID) => {
             return;
         }
 
-        player.outputChatBox(`Player Stats: !{${targetPlayer.data.currentTeam ? teamData[targetPlayer.data.currentTeam].ColorHex : "#FFFFFF"}}${targetPlayer.name}(${targetID})`);
-        player.outputChatBox(`Account ID: !{#9B9B9B}${targetPlayer.sqlID}`);
-        player.outputChatBox(`Kills: !{#9B9B9B}${targetPlayer.kills} !{#FFFFFF}| Deaths: !{#9B9B9B}${targetPlayer.deaths} !{#FFFFFF}| K/D Ratio: !{#9B9B9B}${((targetPlayer.deaths === 0) ? (targetPlayer.kills / 1) : (targetPlayer.kills / targetPlayer.deaths)).toFixed(3)}`);
-        player.outputChatBox(`Money: !{#72CC72}$${targetPlayer.money} !{#FFFFFF}| Register Date: !{#9B9B9B}${formatDate(targetPlayer.regDate, "YYYY-MM-DD HH:mm:ss")}`);
+        // Data statistik yang akan dikirim ke client
+        const playerStatsData = {
+            playerName: targetPlayer.name,
+            accountId: targetPlayer.sqlID,
+            kills: targetPlayer.kills,
+            deaths: targetPlayer.deaths,
+            kdRatio: ((targetPlayer.deaths === 0) ? (targetPlayer.kills / 1) : (targetPlayer.kills / targetPlayer.deaths)).toFixed(3),
+            money: targetPlayer.money,
+            registerDate: formatDate(targetPlayer.regDate, "YYYY-MM-DD HH:mm:ss")
+        };
+
+        // Kirim data ke client dalam bentuk JSON dan buka tampilan CEF
+        player.call("sendPlayerStats", [JSON.stringify(playerStatsData)]);
+        player.call("displayPlayerStats", [true]); // Membuka halaman stats di client
     }
 });
+
 
 mp.events.addCommand("givemoney", (player, _, targetID, amount) => {
     if (player.isLoggedIn) {
