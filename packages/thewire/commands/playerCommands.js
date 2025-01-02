@@ -163,3 +163,21 @@ mp.events.addCommand("top5", (player, ranking) => {
         player.outputChatBox("==================================================");
     }
 });
+
+// server-side script
+mp.events.addCommand('disableradio', (player) => {
+    // Inisialisasi data jika belum ada
+    if (player.data.radioDisabled === undefined) {
+        player.data.radioDisabled = false; // Status awal: ON
+    }
+
+    // Toggle status
+    player.data.radioDisabled = !player.data.radioDisabled;
+
+    // Kirim status ke client
+    player.call('updateRadioStatus', [player.data.radioDisabled]);
+
+    // Tampilkan status ke pemain
+    const status = player.data.radioDisabled ? 'OFF' : 'ON';
+    player.outputChatBox(`Radio Status: ${status}`);
+});

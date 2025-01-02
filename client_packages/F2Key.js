@@ -116,3 +116,32 @@ mp.events.add("render", () => {
     }
 });
 
+// client-side script
+let radioDisabled = false; // Status awal di client
+
+// Event untuk memperbarui status radio
+mp.events.add('updateRadioStatus', (status) => {
+    radioDisabled = status;
+
+    if (radioDisabled) {
+        mp.game.audio.setRadioToStationName('OFF'); // Matikan radio
+        mp.game.audio.setUserRadioControlEnabled(false); // Nonaktifkan kontrol radio
+    } else {
+        mp.game.audio.setUserRadioControlEnabled(true); // Aktifkan kontrol radio
+    }
+});
+
+// Event saat pemain masuk mobil
+mp.events.add('playerEnterVehicle', (vehicle, seat) => {
+    if (radioDisabled && seat === -1) { // Jika fitur dinonaktifkan dan pemain adalah pengemudi
+        mp.game.audio.setRadioToStationName('OFF'); // Matikan radio
+        mp.game.audio.setUserRadioControlEnabled(false); // Nonaktifkan kontrol radio
+    }
+});
+
+// Event saat pemain keluar mobil
+mp.events.add('playerLeaveVehicle', () => {
+    if (!radioDisabled) {
+        mp.game.audio.setUserRadioControlEnabled(true); // Aktifkan kembali kontrol radio
+    }
+});
